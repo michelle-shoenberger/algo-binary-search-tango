@@ -1,13 +1,22 @@
-function binarySearch(){
-  // Code goes here!
+exports.binarySearch = function(target, arr){
+  arr.sort();
+  let indices = [0, arr.length -1]
+  while (indices[1] - indices[0] > 0) {
+    let middleI = Math.floor((indices[1] - indices[0])/ 2) + indices[0]
+    let middle = arr[middleI]
+    if (middle === target) {
+      return middleI
+    } else if (middle > target) {
+      indices[1] = middleI - 1
+    } else {
+      indices[0] = middleI + 1
+    }
+  }
+  if (arr[indices[0]] === target) {
+    return indices[0]
+  } else {
+    return -1
+  }
 }
 
-var smallArray = [1,2,3,4,5]
-var largeArray = [1,5,7,2,3,8,4,9]
 
-console.log(binarySearch(1, smallArray) === 0);
-console.log(binarySearch(2, smallArray) === 1);
-console.log(binarySearch(3, smallArray) === 2);
-console.log(binarySearch(4, smallArray) === 3);
-console.log(binarySearch(5, smallArray) === 4);
-console.log(binarySearch(7, largeArray) === 5);
